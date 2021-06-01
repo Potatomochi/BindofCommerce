@@ -53,6 +53,7 @@ userRouter.post('/register',expressAsyncHandler(async (req, res)=>{
     password:bcrypt.hashSync(req.body.password, 8),
     isSeller: req.body.isSeller,
     seller:{
+      _id : new ObjectId(),
       name:req.body.businessName,
       description: req.body.businessDescription,
       businessURL: req.body.businessURL,

@@ -97,7 +97,6 @@ app.post("/create-stripe-person", expressAsyncHandler(async(req,res) =>{
   }
 }))
 
-
 app.get("/onboard-user/refresh", async (req, res) => {
     try {
         
@@ -122,7 +121,6 @@ app.post("/stripe-checkout", expressAsyncHandler(async (req, res) =>{
     const orderedItems = req.body.orderedItems
     const orderId = req.body._id
     const lineItems = itemHandler(orderedItems)
-
     const sellerDetails = await User.findById(req.body.seller)
 
     const destinationID = sellerDetails.stripeID
@@ -176,14 +174,25 @@ app.post("/api/get-stripe-user" , async(req, res) =>{
 
 app.post("/create-stripe-account" , async(req, res) =>{
     try {
+      const user = await User.findOne({email:req.body.email});
 
-        const user = await User.findOne({email:req.body.email});
+      if (!user.stripeID){
+          const account = await stripeKey.accounts.create({
+              type: "custom",
+              country: 'SG',
+              capabilities : {
+              card_payments: {requested: true},
+              transfers: {requested: true},
+              }
+          })
+          await User.updateOne({email : req.body.email} , {stripeID: account.id})
+      }
 
         const accountLink = await stripeKey.accountLinks.create({
             account: user.stripeID,
-            success_url: 'http://localhost:3000/stripe-onboard-form',
-            refresh_url: 'http://localhost:3000/stripe-onboard-form',
-            failure_url: 'http://localhost:3000/stripe-onboard-form',
+            success_url: 'http://localhost:3000/stripe-onboarding-success',
+            refresh_url: 'http://localhost:3000/stripe-user-creation',
+            failure_url: 'http://localhost:3000/stripe-user-creation',
             collect: 'eventually_due',
             type: 'account_onboarding',
         })
@@ -199,9 +208,9 @@ app.post("/edit-stripe-account" , async(req,res) => {
     const user = await User.findOne({email:req.body.email});
     const accountLink = await stripeKey.accountLinks.create({
         account: user.stripeID,
-        success_url: 'http://localhost:3000/stripe-onboard-form',
-        refresh_url: 'http://localhost:3000/stripe-onboard-start',
-        failure_url: 'http://localhost:3000/stripe-onboard-start',
+        success_url: 'http://localhost:3000/stripe-onboarding-success',
+        refresh_url: 'http://localhost:3000/stripe-user-creation',
+        failure_url: 'http://localhost:3000/stripe-user-creation',
         collect: 'eventually_due',
         type: 'account_update',
     })
@@ -237,15 +246,13 @@ app.post("/stripe-account-post" , expressAsyncHandler(async(req,res) =>{
 app.post("/api/stripe-create-bank-account" ,expressAsyncHandler(async(req,res) =>{
   try {
     const user = await User.findOne({email:req.body.email});
-    console.log(req.body)
-    console.log(req.body.token.id)
     const bankAccount = await stripeKey.accounts.createExternalAccount(
       user.stripeID,
       {
         external_account: req.body.token.id,
       }
     );
-    console.log(bankAccount)
+
     res.status(201).send(bankAccount)
 } catch (err) {
     res.status(400).send({
