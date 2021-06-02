@@ -1,0 +1,142 @@
+.headerContainer{
+display:flex;
+justify-content:space-between;
+background-color: #E24444;
+padding:1%;
+height:5vh;
+
+}
+.brandingLeft{
+    display:flex;
+    flex:0.2;
+}
+.sidebarContainer{
+    margin-right:5%;
+
+}
+.headerLogo{
+    max-width:125px;
+    max-height:95px;
+
+}
+
+.searchBar{
+    margin-left:7%;
+}
+
+.headerRightContainer{
+    display:flex;
+    flex:0.3;
+
+}
+.cartIcon{
+    margin-top:10px;
+}
+.headerLink{
+    color: #FFF;
+}
+.headerLink:hover{
+    color: #FFF;
+    text-decoration: underline;
+}
+.userName{
+    margin-left:25px;
+}
+
+/* Dropdown */
+.dropdown {
+    display: inline-block;
+    position: relative;
+  }
+.dropbtn {
+    background-color: #E24444;
+    color: white;
+    padding: 13px 23px 20px 13px;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+}
+.iconExpand{
+    margin-left:5px;
+}
+.dropbtn:hover{
+    border:none;
+}
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #E24444;
+    padding: 1rem;
+    border-radius:4px;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 999;
+  }
+
+.dropdown-content .dropdownLink{
+    color: #FFF;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+.dropdown-content .dropdownLink:hover {
+      background-color: #f1f1f1;
+      color:#E24444;
+}
+
+
+@media screen and (max-width:680px) {
+    .searchBar{
+        margin-left:1%;
+    }
+    .headerLogo{
+        max-width:125px;
+        max-height:55px;
+    
+    }
+    .brandingLeft{
+        display:flex;
+        flex:0.2;
+        margin-top:5px;
+    }
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #E24444;
+        padding: 1rem;
+        border-radius:4px;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 999;
+        right:0;
+      }
+      .dropbtn {
+        background-color: #E24444;
+        color: white;
+        padding: 10px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+    }
+    .dropdown-content .dropdownLink{
+        color: black;
+        padding: 8px 16px;
+        z-index: 999;
+        text-decoration: none;
+        display: block;
+    }
+    .cartIcon{
+        margin-top:15px;
+    }
+    .headerContainer{
+        display:flex;
+        justify-content:space-between;
+        background-color: #E24444;
+        padding:1%;
+        height:6vh;
+        
+        }
+}

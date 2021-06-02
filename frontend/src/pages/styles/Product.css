@@ -1,0 +1,20 @@
+.productLeft{
+    max-width:40vw;
+
+}
+.productLeft .large{
+    margin:auto;
+    height:auto;
+}
+
+.productRight{
+    margin-left:10%;
+    border-radius:5px;
+    border: 1px solid #c4c4c4;
+    width: 50vw;
+    padding:5%;
+}
+
+.productSpan {
+    margin-bottom:2%;
+}

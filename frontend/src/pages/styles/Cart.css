@@ -1,0 +1,20 @@
+
+.Cartrow{
+    display:flex;
+    align-items: center;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    border:1px solid #c4c4c4;
+    border-radius:2px;
+    padding:20px;
+    max-width:50vw;
+}
+
+.cartCard {
+    border: 0.1rem #c0c0c0 solid;
+    color: #fff;
+    padding:5%;
+    background-color: black;
+    border-radius: 0.5rem;
+    margin: 1rem;
+}

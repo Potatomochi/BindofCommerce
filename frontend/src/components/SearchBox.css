@@ -1,0 +1,36 @@
+.searchButton{
+    background-color:#E24444;
+    border:1px solid #FFF;
+    color:#FFFFFF;
+}
+
+/* Search */
+.search button {
+    border-radius: 0 0.5rem 0.5rem 0;
+    margin-right: 0.5rem;
+  }
+  .search input {
+    border-radius: 0.5rem 0 0 0.5rem;
+    border-right: none;
+    margin-left: 0.5rem;
+    padding-top:15px;
+    padding-right:15px;
+  }
+  .search input:focus{
+      outline: 1px solid   #302F4A;
+  }
+  .active {
+    font-weight: bold;
+  }
+
+@media screen and (max-width:680px) {
+    .search input{
+        padding-right:0px;
+        margin-left:0px;
+    }
+    .headerLogo{
+        max-width:85px;
+        max-height:55px;
+    
+    }
+}
